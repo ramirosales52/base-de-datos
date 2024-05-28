@@ -16,13 +16,13 @@ FROM venta;
 WITH recaudacion_por_barra AS (
     SELECT 
       barra,
-      '$ ' || SUM(total) AS recaudado
+      SUM(total) AS recaudado
     FROM venta
     GROUP BY barra
 )
 SELECT 
   b.nombre AS "Barra",
-  r.recaudado AS "Recaudado"
+  '$ ' || r.recaudado AS "Recaudado"
 FROM recaudacion_por_barra r
 JOIN barra b ON r.barra = b._id
 WHERE r.recaudado = (SELECT MAX(recaudado) FROM recaudacion_por_barra);
@@ -34,7 +34,7 @@ SELECT
 FROM detalle_venta dv
 JOIN bebida b ON dv.bebida = b._id
 GROUP BY b.nombre
-ORDER BY cantidad_vendida DESC
+ORDER BY SUM(dv.cantidad) DESC
 LIMIT 5;
 
 -- Cuantas litros de bebidas se deben reponer.

@@ -16,13 +16,13 @@ FROM venta;
 WITH recaudacion_por_pv AS (
     SELECT 
       punto_venta,
-      '$ ' || SUM(total) AS recaudado
+      SUM(total) AS recaudado
     FROM venta
     GROUP BY punto_venta
 )
 SELECT 
   pv.nombre AS "Punto de Venta",
-  r.recaudado AS "Recaudado"
+  '$ ' || r.recaudado AS "Recaudado"
 FROM recaudacion_por_pv r
 JOIN punto_venta pv ON r.punto_venta = pv._id
 WHERE r.recaudado = (SELECT MAX(recaudado) FROM recaudacion_por_pv);
@@ -34,11 +34,11 @@ SELECT
 FROM detalle_venta dv
 JOIN producto p ON dv.producto = p._id
 GROUP BY p.nombre
-ORDER BY cantidad_vendida DESC
+ORDER BY SUM(dv.cantidad) DESC
 LIMIT 3;
 
 -- Cuanto kg de harina se consumió, entre las ventas realizadas.
 SELECT 
-  SUM(dv.cantidad * p.consumo_harina_kg) AS "Harina Consumida"
+  SUM(dv.cantidad * p.consumo_harina_kg) || ' kg' AS "Harina Consumida"
 FROM detalle_venta dv
 JOIN producto p ON dv.producto = p._id;

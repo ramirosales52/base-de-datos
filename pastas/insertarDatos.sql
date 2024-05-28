@@ -1,5 +1,5 @@
 -- Insertar datos en la tabla punto_venta
-INSERT INTO punto_venta (nombre, venta) VALUES
+INSERT INTO punto_venta (nombre) VALUES
   ('Tienda 1'),
   ('Tienda 2'),
   ('Tienda 3'),

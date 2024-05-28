@@ -10,7 +10,7 @@ CREATE DATABASE fabrica_pastas;
 -- Tabla punto de venta
 CREATE TABLE punto_venta (
     _id SERIAL PRIMARY KEY,
-    nombre VARCHAR(50) NOT NULL,
+    nombre VARCHAR(50) NOT NULL
 );
 
 -- Tabla producto
@@ -18,7 +18,7 @@ CREATE TABLE producto (
     _id SERIAL PRIMARY KEY,
     nombre VARCHAR(50) NOT NULL,
     consumo_harina_kg DECIMAL(10,2) NOT NULL,
-    precio DECIMAL(10,2) NOT NULL
+    precio_kg DECIMAL(10,2) NOT NULL
 );
 
 -- Tabla venta
