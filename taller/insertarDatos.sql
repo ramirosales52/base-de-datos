@@ -52,8 +52,3 @@ INSERT INTO tarea (descripcion, precio, turno) VALUES
   ('Pintura', 3000.00, 3),
   ('Arreglo de paragolpes', 4500.00, 3);
 
-INSERT INTO caja_diaria (fecha, ingreso, egreso) VALUES  
-  ('2024-05-21', 1500.00, 0),
-  ('2024-06-02', 3000.00, 1000),
-  ('2024-06-28', 2000.00, 500);
-

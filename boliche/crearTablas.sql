@@ -41,7 +41,6 @@ CREATE TABLE bebida (
 CREATE TABLE venta (
     _id SERIAL PRIMARY KEY,
     fecha DATE,
-    total DECIMAL(10, 2) DEFAULT 0,
     barra INTEGER REFERENCES barra(_id)
 );
 
@@ -49,7 +48,6 @@ CREATE TABLE venta (
 CREATE TABLE detalle_venta (
     _id SERIAL PRIMARY KEY,
     cantidad INTEGER,
-    subtotal DECIMAL(10, 2) DEFAULT 0,
     venta INTEGER REFERENCES venta(_id),
     bebida INTEGER REFERENCES bebida(_id)
 );

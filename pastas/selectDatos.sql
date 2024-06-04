@@ -1,46 +1,48 @@
--- calcular totales y subtotales
-UPDATE detalle_venta
-SET subtotal = cantidad * (
-    SELECT precio_kg
-    FROM producto
-    WHERE producto._id = detalle_venta.producto);
 
-UPDATE venta
-SET total = (
-    SELECT SUM(subtotal)
-    FROM detalle_venta
-    WHERE detalle_venta.venta = venta._id
-    );
-
-
--- Cuanto dinero se recaudo en cada punto de venta.
+-- Cuánto dinero se recaudó en cada punto de venta
 SELECT 
-  pv.nombre AS "Punto de Venta",
-  '$ ' || SUM(v.total) AS "Recaudado"
-FROM venta v
-JOIN punto_venta pv ON v.punto_venta = pv._id
-GROUP BY pv.nombre
-ORDER BY pv.nombre;
+  pv.nombre AS "Punto de venta",
+  SUM(dv.cantidad * p.precio_kg) AS "Recaudado"
+FROM 
+  punto_venta pv
+JOIN 
+  venta v ON pv._id = v.punto_venta
+JOIN 
+  detalle_venta dv ON v._id = dv.venta
+JOIN 
+  producto p ON dv.producto = p._id
+GROUP BY 
+  pv._id, pv.nombre;
 
--- Cual es el mayor monto recaudado entre los mostradores.
+-- Mayor monto recaudado entre los mostradores
 SELECT 
-  '$ ' || SUM(total) AS "Recaudacion Total"
-FROM venta;
+  SUM(dv.cantidad * p.precio_kg) AS "Total recaudado"
+FROM 
+  punto_venta pv
+JOIN 
+  venta v ON pv._id = v.punto_venta
+JOIN 
+  detalle_venta dv ON v._id = dv.venta
+JOIN 
+  producto p ON dv.producto = p._id;
 
---  En cual o cuales mostradores se produjeron estas mayores recaudaciones.
-WITH recaudacion_por_pv AS (
-    SELECT 
-      punto_venta,
-      SUM(total) AS recaudado
-    FROM venta
-    GROUP BY punto_venta
-)
+-- Mostradores con mayores recaudaciones
 SELECT 
-  pv.nombre AS "Punto de Venta con Mayor recaudación",
-  '$ ' || r.recaudado AS "Recaudado"
-FROM recaudacion_por_pv r
-JOIN punto_venta pv ON r.punto_venta = pv._id
-WHERE r.recaudado = (SELECT MAX(recaudado) FROM recaudacion_por_pv);
+  pv.nombre AS "Punto de venta con mayor recaudación",
+  SUM(dv.cantidad * p.precio_kg) AS "Recaudado"
+FROM 
+  punto_venta pv
+JOIN 
+  venta v ON pv._id = v.punto_venta
+JOIN 
+  detalle_venta dv ON v._id = dv.venta
+JOIN 
+  producto p ON dv.producto = p._id
+GROUP BY 
+  pv.nombre
+ORDER BY 
+  SUM(dv.cantidad * p.precio_kg) DESC
+LIMIT 1;
 
 -- Cuales fueron los 3 productos que mas se vendieron.
 SELECT 

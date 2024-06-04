@@ -84,11 +84,3 @@ CREATE TABLE tarea (
     precio DECIMAL(10, 2) NOT NULL,
     turno INTEGER REFERENCES turno(_id)
 );
-
--- Tabla caja_diaria
-CREATE TABLE caja (
-    _id SERIAL PRIMARY KEY,
-    fecha DATE NOT NULL,
-    ingreso DECIMAL(10, 2) NOT NULL DEFAULT 0,
-    egreso DECIMAL(10, 2) NOT NULL DEFAULT 0
-);
