@@ -32,13 +32,15 @@ INSERT INTO titular (nombre, telefono, nro_doc, tipo_doc, localidad, provincia) 
 
 INSERT INTO vehiculo (dominio, marca, titular) VALUES 
   ('ABC123', 1, 1),
+  ('BBC898', 2, 1),
   ('AAA456', 2, 2),
   ('BBB789', 2, 3);
 
-INSERT INTO turno (fecha, hora, km, km_acumulados, dominio, chofer) VALUES
-  ('2024-05-21', '10:00', 50000, 50000, 'ABC123', 1),
-  ('2024-06-02', '11:00', 10000, 20000, 'AAA456', 1),
-  ('2024-06-28', '12:00', 15000, 30000, 'BBB789', 2);
+INSERT INTO turno (fecha, hora, km, dominio, chofer) VALUES
+  ('2024-05-21', '10:00', 50000, 'ABC123', 1),
+  ('2024-05-21', '12:00', 76000, 'BBC898', 1),
+  ('2024-06-02', '14:00', 10000, 'AAA456', 1),
+  ('2024-06-28', '18:00', 15000, 'BBB789', 2);
 
 INSERT INTO tarea (descripcion, precio, turno) VALUES
   ('Cambio de aceite', 1500.00, 1),

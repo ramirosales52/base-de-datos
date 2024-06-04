@@ -1,3 +1,17 @@
+-- calcular totales y subtotales
+UPDATE detalle_venta
+SET subtotal = cantidad * (
+    SELECT precio_kg
+    FROM producto
+    WHERE producto_id = detalle_venta.producto);
+
+UPDATE venta
+SET total = (
+    SELECT SUM(subtotal)
+    FROM detalle_venta
+    WHERE detalle_venta.venta = venta._id);
+
+
 -- Cuanto dinero se recaudo en cada punto de venta.
 SELECT 
   pv.nombre AS "Punto de Venta",

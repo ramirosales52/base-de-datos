@@ -73,7 +73,6 @@ CREATE TABLE turno (
     fecha DATE NOT NULL,
     hora TIME NOT NULL,
     km INTEGER NOT NULL,
-    km_acumulados INTEGER NOT NULL,
     dominio VARCHAR(10) REFERENCES vehiculo(dominio),
     chofer INTEGER REFERENCES chofer(_id)
 );

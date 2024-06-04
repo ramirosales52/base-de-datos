@@ -4,7 +4,6 @@ SELECT
     t.fecha AS "Fecha",
     t.hora AS "Hora",
     t.km AS "Kilómetros",
-    t.km_acumulados AS "Kilómetros Acumulados",
     ta.descripcion AS "Descripción de la Tarea",
     ta.precio AS "Precio"
 FROM 
@@ -31,7 +30,7 @@ ORDER BY
 
 -- El dia del mes que realizo mas turnos
 SELECT 
-    fecha AS "Fecha",
+    fecha AS "Fecha con más turnos realizados",
     COUNT(*) AS "Cantidad de Turnos"
 FROM 
     turno
@@ -39,23 +38,31 @@ GROUP BY
     fecha
 ORDER BY 
     COUNT(*) DESC
-LIMIT 1;
+LIMIT 10;
 
 -- Saber la cantidad de km desde el ultimo turno por la garantia
-WITH UltimoTurno AS (
-    SELECT 
-        dominio, 
-        MAX(fecha) AS ultima_fecha
-    FROM 
-        turno
-    GROUP BY 
-        dominio
-)
-SELECT 
-    t.dominio AS "Dominio",
-    t.km AS "Kilómetros del Último Turno",
-    t.km_acumulados AS "Kilómetros Acumulados"
-FROM 
-    turno t
-JOIN 
-    UltimoTurno ut ON t.dominio = ut.dominio AND t.fecha = ut.ultima_fecha;
+-- WITH UltimoTurno AS (
+--     SELECT 
+--         dominio, 
+--         MAX(fecha) AS ultima_fecha
+--     FROM 
+--         turno
+--     GROUP BY 
+--         dominio
+-- )
+-- SELECT 
+--     t.dominio AS "Dominio",
+--     t.km AS "Kilómetros del Último Turno",
+--     t.km_acumulados AS "Kilómetros Acumulados"
+-- FROM 
+--     turno t
+-- JOIN 
+--     UltimoTurno ut ON t.dominio = ut.dominio AND t.fecha = ut.ultima_fecha;
+
+SELECT
+    vehiculo.dominio AS "Dominio del vehículo",
+    turno.km AS "Kilómetros del último turno"
+FROM
+    vehiculo
+JOIN
+    turno ON turno.dominio = vehiculo.dominio
