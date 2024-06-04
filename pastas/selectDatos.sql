@@ -9,7 +9,8 @@ UPDATE venta
 SET total = (
     SELECT SUM(subtotal)
     FROM detalle_venta
-    WHERE detalle_venta.venta = venta._id);
+    WHERE detalle_venta.venta = venta._id
+    );
 
 
 -- Cuanto dinero se recaudo en cada punto de venta.

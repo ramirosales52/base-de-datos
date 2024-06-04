@@ -1,3 +1,19 @@
+-- calcular totales y subtotales
+UPDATE detalle_venta
+SET subtotal = cantidad *(
+  SELECT precio
+  FROM bebida
+  WHERE bebida._id = detalle_venta.bebida
+);
+
+UPDATE venta
+SET total = cantidad * (
+  SELECT SUM(subtotal)
+  FROM detalle_venta
+  WHERE detalle_venta.venta = venta._id
+);
+
+
 -- Cuanto se recaudo en cada barra.
 SELECT 
   b.nombre AS "Barra",
