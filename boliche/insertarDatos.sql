@@ -30,29 +30,29 @@ INSERT INTO bebida (nombre, precio, litros, cantidad_disponible) VALUES
   ('Vodka', 5.00, 30.00, 20.00);
 
 -- Insertar datos en la tabla venta
-INSERT INTO venta (fecha, barra, total) VALUES
-  ('2024-05-27', 1, 17.00),
-  ('2024-05-28', 2, 3.00),
-  ('2024-05-29', 3, 18.00),
-  ('2024-05-29', 4, 10.00),
-  ('2024-05-30', 4, 5.00),
-  ('2024-05-31', 4, 16.00);
+INSERT INTO venta (fecha, barra) VALUES
+  ('2024-05-27', 1),
+  ('2024-05-28', 2),
+  ('2024-05-29', 3),
+  ('2024-05-29', 4),
+  ('2024-05-30', 4),
+  ('2024-05-31', 4);
 
 -- Insertar datos en la tabla detalle_venta
-INSERT INTO detalle_venta (venta, bebida, cantidad, subtotal) VALUES
-  (1, 1, 1, 3.00),
-  (1, 2, 2, 14.00),
+INSERT INTO detalle_venta (venta, bebida, cantidad) VALUES
+  (1, 1, 1),
+  (1, 2, 2),
 
-  (2, 1, 1, 3.00),
+  (2, 1, 1),
 
-  (3, 2, 2, 14.00),
-  (3, 3, 2, 4.00),
+  (3, 2, 2),
+  (3, 3, 2),
 
-  (4, 3, 4, 8.00),
-  (4, 4, 1, 2.00),
+  (4, 3, 4),
+  (4, 4, 1),
 
-  (5, 6, 1, 5.00),
+  (5, 6, 1),
   
-  (6, 1, 1, 3.00),
-  (6, 2, 1, 7.00),
-  (6, 4, 3, 6.00);
+  (6, 1, 1),
+  (6, 2, 1),
+  (6, 4, 3);

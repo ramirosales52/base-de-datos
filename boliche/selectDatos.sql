@@ -7,7 +7,7 @@ SET subtotal = cantidad *(
 );
 
 UPDATE venta
-SET total = cantidad * (
+SET total = (
   SELECT SUM(subtotal)
   FROM detalle_venta
   WHERE detalle_venta.venta = venta._id
@@ -37,7 +37,7 @@ WITH recaudacion_por_barra AS (
     GROUP BY barra
 )
 SELECT 
-  b.nombre AS "Barra",
+  b.nombre AS "Barra con más recaudación",
   '$ ' || r.recaudado AS "Recaudado"
 FROM recaudacion_por_barra r
 JOIN barra b ON r.barra = b._id
@@ -45,7 +45,7 @@ WHERE r.recaudado = (SELECT MAX(recaudado) FROM recaudacion_por_barra);
 
 -- Cuales fueron las 5 bebidas que mas se vendieron.
 SELECT 
-  b.nombre AS "Bebida", 
+  b.nombre AS "Bebidas más vendidas", 
   SUM(dv.cantidad) AS "Cantidad Vendida"
 FROM detalle_venta dv
 JOIN bebida b ON dv.bebida = b._id
@@ -55,7 +55,7 @@ LIMIT 5;
 
 -- Cuantas litros de bebidas se deben reponer.
 SELECT 
-  nombre AS "Bebida",
+  nombre AS "Bebidas reponer",
   litros - cantidad_disponible || ' l' AS "Litros a Reponer"
 FROM bebida;
 
