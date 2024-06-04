@@ -3,7 +3,7 @@ UPDATE detalle_venta
 SET subtotal = cantidad * (
     SELECT precio_kg
     FROM producto
-    WHERE producto_id = detalle_venta.producto);
+    WHERE producto._id = detalle_venta.producto);
 
 UPDATE venta
 SET total = (

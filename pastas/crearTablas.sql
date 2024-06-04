@@ -33,7 +33,7 @@ CREATE TABLE venta (
 CREATE TABLE detalle_venta (
     _id SERIAL PRIMARY KEY,
     cantidad INTEGER NOT NULL,
-    subtotal DECIMAL(10,2) NOT NULL,
+    subtotal DECIMAL(10,2) DEFAULT 0,
     producto INTEGER REFERENCES producto(_id),
     venta INTEGER REFERENCES venta(_id)
 );
