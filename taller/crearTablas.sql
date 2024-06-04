@@ -86,7 +86,7 @@ CREATE TABLE tarea (
 );
 
 -- Tabla caja_diaria
-CREATE TABLE caja_diaria (
+CREATE TABLE caja (
     _id SERIAL PRIMARY KEY,
     fecha DATE NOT NULL,
     ingreso DECIMAL(10, 2) NOT NULL DEFAULT 0,

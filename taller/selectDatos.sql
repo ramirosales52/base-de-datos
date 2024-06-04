@@ -1,3 +1,13 @@
+--calcular total de las tareas
+UPDATE caja
+SET ingreso = (
+    SELECT SUM(precio)
+    FROM tarea
+    WHERE tarea.fecha = caja.fecha
+);
+
+
+
 -- Historial trabajos por vehiculo
 SELECT 
     v.dominio AS "Dominio",
@@ -22,7 +32,7 @@ SELECT
     SUM(egreso) AS "Egreso Total",
     SUM(ingreso) - SUM(egreso) AS "Balance"
 FROM 
-    caja_diaria
+    caja
 GROUP BY 
     fecha
 ORDER BY 
@@ -39,6 +49,9 @@ GROUP BY
 ORDER BY 
     COUNT(*) DESC
 LIMIT 10;
+
+SELECT
+
 
 -- Saber la cantidad de km desde el ultimo turno por la garantia
 -- WITH UltimoTurno AS (

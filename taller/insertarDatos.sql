@@ -44,8 +44,13 @@ INSERT INTO turno (fecha, hora, km, dominio, chofer) VALUES
 
 INSERT INTO tarea (descripcion, precio, turno) VALUES
   ('Cambio de aceite', 1500.00, 1),
+  ('Cambio de filtros', 1500.00, 1),
+
   ('Balanceo', 3000.00, 2),
-  ('Cambio de filtros', 2000.00, 3);
+  ('Ajuste de frenos', 2000.00, 2),
+
+  ('Pintura', 3000.00, 3),
+  ('Arreglo de paragolpes', 4500.00, 3);
 
 INSERT INTO caja_diaria (fecha, ingreso, egreso) VALUES  
   ('2024-05-21', 1500.00, 0),
