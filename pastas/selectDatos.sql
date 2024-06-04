@@ -36,7 +36,7 @@ WITH recaudacion_por_pv AS (
     GROUP BY punto_venta
 )
 SELECT 
-  pv.nombre AS "Punto de Venta",
+  pv.nombre AS "Punto de Venta con Mayor recaudación",
   '$ ' || r.recaudado AS "Recaudado"
 FROM recaudacion_por_pv r
 JOIN punto_venta pv ON r.punto_venta = pv._id
@@ -44,7 +44,7 @@ WHERE r.recaudado = (SELECT MAX(recaudado) FROM recaudacion_por_pv);
 
 -- Cuales fueron los 3 productos que mas se vendieron.
 SELECT 
-  p.nombre AS "Producto", 
+  p.nombre AS "Productos más vendidos", 
   SUM(dv.cantidad) AS "Cantidad Vendida"
 FROM detalle_venta dv
 JOIN producto p ON dv.producto = p._id
@@ -54,6 +54,6 @@ LIMIT 3;
 
 -- Cuanto kg de harina se consumió, entre las ventas realizadas.
 SELECT 
-  SUM(dv.cantidad * p.consumo_harina_kg) || ' kg' AS "Harina Consumida"
+  SUM(dv.cantidad * p.consumo_harina_kg) || ' kg' AS "Harina Total consumida"
 FROM detalle_venta dv
 JOIN producto p ON dv.producto = p._id;
