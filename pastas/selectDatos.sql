@@ -16,7 +16,7 @@ GROUP BY
 
 -- Mayor monto recaudado entre los mostradores
 SELECT 
-  SUM(dv.cantidad * p.precio_kg) AS "Total recaudado"
+  SUM(dv.cantidad * p.precio) AS "Total recaudado"
 FROM 
   punto_venta pv
 JOIN 
@@ -29,7 +29,7 @@ JOIN
 -- Mostradores con mayores recaudaciones
 SELECT 
   pv.nombre AS "Punto de venta con mayor recaudación",
-  SUM(dv.cantidad * p.precio_kg) AS "Recaudado"
+  SUM(dv.cantidad * p.precio) AS "Recaudado"
 FROM 
   punto_venta pv
 JOIN 
@@ -41,7 +41,7 @@ JOIN
 GROUP BY 
   pv.nombre
 ORDER BY 
-  SUM(dv.cantidad * p.precio_kg) DESC
+  SUM(dv.cantidad * p.precio) DESC
 LIMIT 1;
 
 -- Cuales fueron los 3 productos que mas se vendieron.
@@ -56,6 +56,14 @@ LIMIT 3;
 
 -- Cuanto kg de harina se consumió, entre las ventas realizadas.
 SELECT 
-  SUM(dv.cantidad * p.consumo_harina_kg) || ' kg' AS "Harina Total consumida"
-FROM detalle_venta dv
-JOIN producto p ON dv.producto = p._id;
+  SUM(dv.cantidad * di.cantidad) || ' kg' AS "Harina Total consumida"
+FROM 
+  detalle_venta dv
+JOIN 
+  producto p ON dv.producto = p._id
+JOIN 
+  detalle_ingrediente di ON di.producto = p._id
+JOIN 
+  ingrediente i ON di.ingrediente = i._id
+WHERE 
+  i.nombre = 'Harina';

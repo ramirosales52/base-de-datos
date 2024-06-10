@@ -17,8 +17,7 @@ CREATE TABLE punto_venta (
 CREATE TABLE producto (
     _id SERIAL PRIMARY KEY,
     nombre VARCHAR(50) NOT NULL,
-    consumo_harina_kg DECIMAL(10,2) NOT NULL,
-    precio_kg DECIMAL(10,2) NOT NULL
+    precio DECIMAL(10,2) NOT NULL
 );
 
 -- Tabla venta
@@ -44,7 +43,14 @@ CREATE TABLE unidad_medida (
 CREATE TABLE ingrediente (
     _id SERIAL PRIMARY KEY,
     nombre VARCHAR(30) NOT NULL,
+    -- cantidad DECIMAL(10,2)  NOT NULL DEFAULT 0,
+    -- unidad_medida INTEGER REFERENCES unidad_medida(_id),
+    producto INTEGER REFERENCES producto(_id)
+);
+
+CREATE TABLE detalle_ingrediente (
+    _id SERIAL PRIMARY KEY,
     cantidad DECIMAL(10,2)  NOT NULL DEFAULT 0,
     unidad_medida INTEGER REFERENCES unidad_medida(_id),
-    producto INTEGER REFERENCES producto(_id)
+    ingrediente INTEGER REFERENCES ingrediente(_id)
 );
