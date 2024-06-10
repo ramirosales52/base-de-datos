@@ -45,24 +45,23 @@ INSERT INTO detalle_venta (venta, producto, cantidad) VALUES
   (6, 3, 3);
 
 INSERT INTO unidad_medida (nombre) VALUES
-("ml"),
-("kg"),
-("unidad");
+('ml'),
+('kg'),
+('unidad');
 
 INSERT INTO ingrediente (nombre) VALUES
-("Harina"), 
-("Huevo"),
-("Carne"),
-("Sal"), 
-("Aceite de oliva"), 
-("Agua"),
-("Jamon"),
-("Queso"),
-("Atado de brocoli"),
-("Ajo"),
-("Aceite"),
-("Papa")
-;         
+('Harina'), 
+('Huevo'),
+('Carne'),
+('Sal'), 
+('Aceite de oliva'), 
+('Agua'),
+('Jamon'),
+('Queso'),
+('Atado de brocoli'),
+('Ajo'),
+('Aceite'),
+('Papa');         
 
 INSERT INTO detalle_ingrediente (cantidad, unidad_medida, ingrediente, producto) VALUES
 (1, 2, 1, 1),

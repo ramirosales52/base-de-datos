@@ -37,20 +37,21 @@ CREATE TABLE detalle_venta (
 
 CREATE TABLE unidad_medida (
     _id SERIAL PRIMARY KEY,
-    nombre VARCHAR(30)d NOT NULL
+    nombre VARCHAR(30) NOT NULL
 );
 
 CREATE TABLE ingrediente (
     _id SERIAL PRIMARY KEY,
-    nombre VARCHAR(30) NOT NULL,
+    nombre VARCHAR(30) NOT NULL
     -- cantidad DECIMAL(10,2)  NOT NULL DEFAULT 0,
     -- unidad_medida INTEGER REFERENCES unidad_medida(_id),
-    producto INTEGER REFERENCES producto(_id)
+    -- producto INTEGER REFERENCES producto(_id)
 );
 
 CREATE TABLE detalle_ingrediente (
     _id SERIAL PRIMARY KEY,
     cantidad DECIMAL(10,2)  NOT NULL DEFAULT 0,
     unidad_medida INTEGER REFERENCES unidad_medida(_id),
-    ingrediente INTEGER REFERENCES ingrediente(_id)
+    ingrediente INTEGER REFERENCES ingrediente(_id),
+    producto INTEGER REFERENCES producto(_id)
 );

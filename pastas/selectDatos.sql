@@ -2,7 +2,7 @@
 -- Cuánto dinero se recaudó en cada punto de venta
 SELECT 
   pv.nombre AS "Punto de venta",
-  SUM(dv.cantidad * p.precio_kg) AS "Recaudado"
+  SUM(dv.cantidad * p.precio) AS "Recaudado"
 FROM 
   punto_venta pv
 JOIN 
