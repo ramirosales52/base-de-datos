@@ -27,7 +27,10 @@ INSERT INTO bebida (nombre, cantidad_ml) VALUES
   ('Agua tónica', 1000),
   ('Coca Cola', 2500),
   ('Fernet', 1000),
-  ('Jugo de naranja', 3000);
+  ('Jugo de naranja', 3000),
+  ('Vodka', 750),
+  ('Ron', 1000),
+  ('Licor de melón', 1000);
 
 -- Insertar datos en la tabla venta
 INSERT INTO venta (fecha, barra) VALUES
@@ -41,7 +44,9 @@ INSERT INTO venta (fecha, barra) VALUES
 INSERT INTO trago (nombre, volumen_ml, precio) VALUES
 ('Fernet con coca', 300, 3000),
 ('Whiscola', 100, 2000),
-('Gin tonic', 100, 1500);
+('Gin tonic', 100, 1500),
+('Destornillador', 100, 1000),
+('Vodka y melón', 150, 2000);
 
 
 -- Insertar datos en la tabla detalle_venta
@@ -73,4 +78,10 @@ INSERT INTO detalle_trago (cantidad, bebida, trago) VALUES
 (70, 4, 2),
 
 (30, 2, 3),
-(70, 3, 3);
+(70, 3, 3),
+
+(60, 7, 4),
+(100, 6, 4),
+
+(60, 7, 5),
+(90, 9, 5);

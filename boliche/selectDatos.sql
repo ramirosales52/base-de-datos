@@ -64,7 +64,7 @@ LIMIT 5;
 -- Cuantas litros de bebidas se deben reponer.
 SELECT
   bebida.nombre AS "Bebida",
-  SUM(dt.cantidad) AS "Cantidad a reponer en ml"
+  SUM(dt.cantidad) * 0.001 AS "Cantidad a reponer en litros"
 FROM 
   bebida
 JOIN
