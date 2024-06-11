@@ -3,7 +3,7 @@
 -- Cuanto se recaudo en cada barra.
 SELECT 
   b.nombre AS "Barra",
-   SUM(dv.cantidad * bd.precio) AS "Recaudado"
+   SUM(dv.cantidad * t.precio) AS "Recaudado"
 FROM 
   barra b
 JOIN 
@@ -11,13 +11,13 @@ JOIN
 JOIN 
   detalle_venta dv ON v._id = dv.venta
 JOIN 
-  bebida bd ON dv.bebida = bd._id
+  trago t ON dv.trago = t._id
 GROUP BY 
   b._id, b.nombre;
 
 -- Cual es el monto recaudado entre las barras.
 SELECT 
-  SUM(dv.cantidad * bd.precio) AS "Total recaudado"
+  SUM(dv.cantidad * t.precio) AS "Total recaudado"
 FROM 
   barra b
 JOIN 
@@ -25,7 +25,7 @@ JOIN
 JOIN 
   detalle_venta dv ON v._id = dv.venta
 JOIN 
-  bebida bd ON dv.bebida = bd._id;
+  trago t ON dv.bebida = t._id;
 
 
 -- En que o cuales barras se produjo el mayor monto recaudado.
@@ -62,8 +62,14 @@ ORDER BY
 LIMIT 5;
 
 -- Cuantas litros de bebidas se deben reponer.
-SELECT 
-  nombre AS "Bebidas reponer",
-  litros - cantidad_disponible || ' l' AS "Litros a Reponer"
-FROM bebida;
+SELECT
+  bebida.nombre AS "Bebida",
+  SUM(dt.cantidad) AS "Cantidad a reponer"
+FROM 
+  bebida
+JOIN
+  detalle_trago dt ON dt.bebida = bebida._id
+GROUP BY
+  bebida.nombre
+
 

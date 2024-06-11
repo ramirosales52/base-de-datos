@@ -21,13 +21,13 @@ INSERT INTO barra (nombre, empleado) VALUES
   ('Barra 4', 4);
 
 -- Insertar datos en la tabla bebida
-INSERT INTO bebida (nombre, precio, litros, cantidad_disponible) VALUES
-  ('Cerveza', 3.00, 30.00, 12.00),
-  ('Whisky', 7.00, 12.00, 7.00),
-  ('Coca', 2.00, 50.00, 35.00),
-  ('Agua', 2.00, 50.00, 20.00),
-  ('Vino', 4.00, 50.00, 40.00),
-  ('Vodka', 5.00, 30.00, 20.00);
+INSERT INTO bebida (nombre, cantidad_ml) VALUES
+  ('Whisky', 1000),
+  ('Gin', 800),
+  ('Agua tónica', 1000),
+  ('Coca Cola', 2500),
+  ('Fernet', 1000),
+  ('Jugo de naranja', 3000);
 
 -- Insertar datos en la tabla venta
 INSERT INTO venta (fecha, barra) VALUES
@@ -39,7 +39,7 @@ INSERT INTO venta (fecha, barra) VALUES
   ('2024-05-31', 4);
 
 -- Insertar datos en la tabla detalle_venta
-INSERT INTO detalle_venta (venta, bebida, cantidad) VALUES
+INSERT INTO detalle_venta (venta, trago, cantidad) VALUES
   (1, 1, 1),
   (1, 2, 2),
 
@@ -56,3 +56,18 @@ INSERT INTO detalle_venta (venta, bebida, cantidad) VALUES
   (6, 1, 1),
   (6, 2, 1),
   (6, 4, 3);
+
+INSERT INTO trago (nombre, volumen_ml, precio) VALUES
+('Fernet con coca', 300, 3000),
+('Whiscola', 100, 2000),
+('Gin tonic', 100, 1500);
+
+INSERT INTO detalle_trago (cantidad, bebida, trago) VALUES
+(200, 4, 1),
+(100, 5, 1),
+
+(30, 1, 2),
+(70, 4, 2),
+
+(30, 2, 3),
+(70, 3, 3);

@@ -41,23 +41,29 @@ CREATE TABLE detalle_venta (
     _id SERIAL PRIMARY KEY,
     cantidad INTEGER,
     venta INTEGER REFERENCES venta(_id),
-    bebida INTEGER REFERENCES bebida(_id)
+    trago INTEGER REFERENCES trago(_id)
 );
 
 -- Tabla trago
 CREATE TABLE trago (
     _id SERIAL PRIMARY KEY,
     nombre VARCHAR(30) NOT NULL,
-    volumen INTEGER NOT NULL,
+    volumen_ml INTEGER NOT NULL,
     precio DECIMAL(10,2) NOT NULL
 );
 
 -- Tabla bebida
 CREATE TABLE bebida (
     _id SERIAL PRIMARY KEY,
-    nombre VARCHAR(100),
-    -- precio DECIMAL(10, 2),
-    litros DECIMAL(10, 2),
-    cantidad_disponible DECIMAL(10, 2),
+    nombre VARCHAR(100) NOT NULL,
+    cantidad_ml INTEGER NOT NULL
+);
+
+
+-- Tabla detalle del trago
+CREATE TABLE detalle_trago (
+    _id SERIAL PRIMARY KEY,
+    cantidad DECIMAL(10,2) NOT NULL DEFAULT 0,
+    bebida INTEGER REFERENCES bebida(_id),
     trago INTEGER REFERENCES trago(_id)
 );
