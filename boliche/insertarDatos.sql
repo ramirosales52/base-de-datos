@@ -38,6 +38,12 @@ INSERT INTO venta (fecha, barra) VALUES
   ('2024-05-30', 4),
   ('2024-05-31', 4);
 
+INSERT INTO trago (nombre, volumen_ml, precio) VALUES
+('Fernet con coca', 300, 3000),
+('Whiscola', 100, 2000),
+('Gin tonic', 100, 1500);
+
+
 -- Insertar datos en la tabla detalle_venta
 INSERT INTO detalle_venta (venta, trago, cantidad) VALUES
   (1, 1, 1),
@@ -49,18 +55,15 @@ INSERT INTO detalle_venta (venta, trago, cantidad) VALUES
   (3, 3, 2),
 
   (4, 3, 4),
-  (4, 4, 1),
+  (4, 2, 1),
 
-  (5, 6, 1),
+  (5, 1, 1),
   
   (6, 1, 1),
   (6, 2, 1),
-  (6, 4, 3);
+  (6, 3, 3);
 
-INSERT INTO trago (nombre, volumen_ml, precio) VALUES
-('Fernet con coca', 300, 3000),
-('Whiscola', 100, 2000),
-('Gin tonic', 100, 1500);
+
 
 INSERT INTO detalle_trago (cantidad, bebida, trago) VALUES
 (200, 4, 1),

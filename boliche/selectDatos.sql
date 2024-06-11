@@ -25,13 +25,13 @@ JOIN
 JOIN 
   detalle_venta dv ON v._id = dv.venta
 JOIN 
-  trago t ON dv.bebida = t._id;
+  trago t ON dv.trago = t._id;
 
 
 -- En que o cuales barras se produjo el mayor monto recaudado.
 SELECT 
   b.nombre AS "Barra con mayor recaudación",
-  SUM(dv.cantidad * bd.precio) AS "Recaudado"
+  SUM(dv.cantidad * t.precio) AS "Recaudado"
 FROM 
   barra b
 JOIN 
@@ -39,24 +39,24 @@ JOIN
 JOIN 
   detalle_venta dv ON v._id = dv.venta
 JOIN 
-  bebida bd ON dv.bebida = bd._id
+  trago t ON dv.trago = t._id
 GROUP BY 
   b.nombre
 ORDER BY 
-  SUM(dv.cantidad * bd.precio) DESC
+  SUM(dv.cantidad * t.precio) DESC
 LIMIT 1;
 
 
 -- Cuales fueron las 5 bebidas que mas se vendieron.
 SELECT 
-  b.nombre AS "Bebidas más vendidas", 
+  t.nombre AS "Bebidas más vendidas", 
   SUM(dv.cantidad) AS "Cantidad Vendida"
 FROM 
   detalle_venta dv
 JOIN 
-  bebida b ON dv.bebida = b._id
+  trago t ON dv.trago = t._id
 GROUP BY 
-  b.nombre
+  t.nombre
 ORDER BY 
   SUM(dv.cantidad) DESC
 LIMIT 5;
@@ -64,12 +64,12 @@ LIMIT 5;
 -- Cuantas litros de bebidas se deben reponer.
 SELECT
   bebida.nombre AS "Bebida",
-  SUM(dt.cantidad) AS "Cantidad a reponer"
+  SUM(dt.cantidad) AS "Cantidad a reponer en ml"
 FROM 
   bebida
 JOIN
   detalle_trago dt ON dt.bebida = bebida._id
 GROUP BY
-  bebida.nombre
+  bebida.nombre;
 
 
