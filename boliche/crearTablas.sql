@@ -24,10 +24,15 @@ CREATE TABLE empleado (
 -- Tabla barra
 CREATE TABLE barra (
     _id SERIAL PRIMARY KEY,
-    nombre VARCHAR(100),
-    empleado INTEGER REFERENCES empleado(_id)
+    nombre VARCHAR(100)
 );
 
+
+CREATE TABLE detalle_barra (
+    _id SERIAL PRIMARY KEY,
+    empleado INTEGER REFERENCES empleado(_id),
+    barra INTEGER REFERENCES barra(_id)
+);
 
 -- Tabla venta
 CREATE TABLE venta (
@@ -49,6 +54,7 @@ CREATE TABLE trago (
 CREATE TABLE detalle_venta (
     _id SERIAL PRIMARY KEY,
     cantidad INTEGER,
+    precio DECIMAL(10,2) NOT NULL,
     venta INTEGER REFERENCES venta(_id),
     trago INTEGER REFERENCES trago(_id)
 );

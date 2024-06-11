@@ -2,46 +2,44 @@
 -- Cuánto dinero se recaudó en cada punto de venta
 SELECT 
   pv.nombre AS "Punto de venta",
-  SUM(dv.cantidad * p.precio) AS "Recaudado"
+  SUM(dv.cantidad * dv.precio) AS "Recaudado"
 FROM 
   punto_venta pv
 JOIN 
   venta v ON pv._id = v.punto_venta
 JOIN 
   detalle_venta dv ON v._id = dv.venta
-JOIN 
-  producto p ON dv.producto = p._id
 GROUP BY 
-  pv._id, pv.nombre;
+  pv._id, pv.nombre
+WHERE
+  v.fecha = CURRENT_DATE;
 
 -- Mayor monto recaudado entre los mostradores
 SELECT 
-  SUM(dv.cantidad * p.precio) AS "Total recaudado"
+  SUM(dv.cantidad * dv.precio) AS "Total recaudado"
 FROM 
   punto_venta pv
 JOIN 
   venta v ON pv._id = v.punto_venta
 JOIN 
   detalle_venta dv ON v._id = dv.venta
-JOIN 
-  producto p ON dv.producto = p._id;
+WHERE
+  v.fecha = CURRENT_DATE;
 
 -- Mostradores con mayores recaudaciones
 SELECT 
   pv.nombre AS "Punto de venta con mayor recaudación",
-  SUM(dv.cantidad * p.precio) AS "Recaudado"
+  SUM(dv.cantidad * dv.precio) AS "Recaudado"
 FROM 
   punto_venta pv
 JOIN 
   venta v ON pv._id = v.punto_venta
 JOIN 
   detalle_venta dv ON v._id = dv.venta
-JOIN 
-  producto p ON dv.producto = p._id
 GROUP BY 
   pv.nombre
 ORDER BY 
-  SUM(dv.cantidad * p.precio) DESC
+  SUM(dv.cantidad * dv.precio) DESC
 LIMIT 1;
 
 -- Cuales fueron los 3 productos que mas se vendieron.

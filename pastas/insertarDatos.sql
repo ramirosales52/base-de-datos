@@ -22,27 +22,27 @@ INSERT INTO venta (fecha, punto_venta) VALUES
   ('2024-05-25', 4);
 
 -- Insertar datos en la tabla detalle_venta
-INSERT INTO detalle_venta (venta, producto, cantidad) VALUES
-  (1, 1, 2),
-  (1, 2, 4),
-  (1, 3, 1),
-  (1, 4, 2),
+INSERT INTO detalle_venta (venta, precio, producto, cantidad) VALUES
+  (1, 1100, 1, 2),
+  (1, 1200, 2, 4),
+  (1, 1500, 3, 1),
+  (1, 1800, 4, 2),
 
-  (2, 1, 3),
-  (2, 2, 4),
+  (2, 1100, 1, 3),
+  (2, 1200, 2, 4),
 
-  (3, 1, 2),
-  (3, 3, 1),
-  (3, 4, 2),
+  (3, 1100, 1, 2),
+  (3, 1500, 3, 1),
+  (3, 1800, 4, 2),
 
-  (4, 3, 3),
-  (4, 4, 1),
+  (4, 1500, 3, 3),
+  (4, 1800, 4, 1),
 
-  (5, 2, 1),
+  (5, 1200, 2, 1),
 
-  (6, 1, 1),
-  (6, 2, 1),
-  (6, 3, 3);
+  (6, 1100, 1, 1),
+  (6, 1200, 2, 1),
+  (6, 1500, 3, 3);
 
 INSERT INTO unidad_medida (nombre) VALUES
 ('ml'),

@@ -31,6 +31,7 @@ CREATE TABLE venta (
 CREATE TABLE detalle_venta (
     _id SERIAL PRIMARY KEY,
     cantidad INTEGER NOT NULL,
+    precio DECIMAL(10,2) NOT NULL,
     producto INTEGER REFERENCES producto(_id),
     venta INTEGER REFERENCES venta(_id)
 );

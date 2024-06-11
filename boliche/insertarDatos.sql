@@ -11,14 +11,38 @@ INSERT INTO empleado (nombre, nro_documento, telefono) VALUES
   ('Juan Pérez', 12345678, 1111111111),
   ('María García', 87654321, 2222222222),
   ('Carlos López', 56789012, 3333333333),
-  ('Jose Gonzalez', 321654987, 4444444444);
+  ('Jose Gonzalez', 321654987, 4444444444),
+  ('Fabrizio Rava', 2341234423, 5555555555),
+  ('Luis Alvaro Colque Conde', 324324523, 6666666666),
+  ('Ramiro Rosales', 23454362, 7777777777),
+  ('Gonzalo Rodriguez', 324556656, 8888888888),
+  ('Santiago Montes', 3534642546, 9999999999),
+  ('Tamara Candia', 253462677, 101010101010);
 
 -- Insertar datos en la tabla barra
-INSERT INTO barra (nombre, empleado) VALUES 
-  ('Barra 1', 1),
-  ('Barra 2', 2),
-  ('Barra 3', 3),
-  ('Barra 4', 4);
+INSERT INTO barra (nombre) VALUES 
+  ('Barra 1'),
+  ('Barra 2'),
+  ('Barra 3'),
+  ('Barra 4');
+
+INSERT INTO detalle_barra (empleado, barra) VALUES
+  (1, 1),
+  (2, 1),
+  (3, 1),
+
+  (4, 2),
+  (5, 2),
+
+  (6, 3),
+  (7, 3),
+  (8, 3),
+
+  (9, 4),
+  (10, 4);
+
+
+
 
 -- Insertar datos en la tabla bebida
 INSERT INTO bebida (nombre, cantidad_ml) VALUES
@@ -50,23 +74,46 @@ INSERT INTO trago (nombre, volumen_ml, precio) VALUES
 
 
 -- Insertar datos en la tabla detalle_venta
-INSERT INTO detalle_venta (venta, trago, cantidad) VALUES
-  (1, 1, 1),
-  (1, 2, 2),
+INSERT INTO detalle_venta (venta, precio, trago, cantidad) VALUES
+  (1, 3000, 1, 1),
+  (1, 3000, 1, 1),
+  (1, 3000, 1, 1),
+  (1, 3000, 1, 1),
+  (1, 3000, 1, 1),
+  (1, 3000, 1, 1),
+  (1, 3000, 1, 1),
+  (1, 3000, 1, 1),
+  (1, 3000, 1, 1),
+  (1, 3000, 1, 1),
+  (1, 3000, 1, 1),
+  (1, 3000, 1, 1),
+  (1, 3000, 1, 1),
+  (1, 3000, 1, 1),
+  (1, 3000, 1, 1),
+  (1, 3000, 1, 1),
+  (1, 3000, 1, 1),
+  (1, 3000, 1, 1),
+  (1, 3000, 1, 1),
+  (1, 3000, 1, 1),
+  (1, 3000, 1, 1),
+  (1, 3000, 1, 1),
+  (1, 3000, 1, 1),
+  (1, 3000, 1, 1),
+  (1, 2000, 2, 2),
 
-  (2, 4, 1),
+  (2, 1000, 4, 1),
 
-  (3, 2, 2),
-  (3, 3, 2),
+  (3, 2000, 2, 2),
+  (3, 1500, 3, 2),
 
-  (4, 3, 4),
-  (4, 5, 1),
+  (4, 1500, 3, 4),
+  (4, 2000, 5, 1),
 
-  (5, 1, 1),
+  (5, 3000, 1, 1),
   
-  (6, 1, 1),
-  (6, 4, 1),
-  (6, 3, 3);
+  (6, 3000, 1, 1),
+  (6, 1000, 4, 1),
+  (6, 1500, 3, 3);
 
 
 
